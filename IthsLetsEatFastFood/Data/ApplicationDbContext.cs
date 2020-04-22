@@ -11,6 +11,7 @@ namespace IthsLetsEatFastFood.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using IthsLetsEatFastFood.Models;
 
 namespace IthsLetsEatFastFood.Data
 {
@@ -13,5 +14,6 @@ namespace IthsLetsEatFastFood.Data
         {
 
         }
+        public DbSet<IthsLetsEatFastFood.Models.FoodProduct> FoodProduct { get; set; }
     }
 }

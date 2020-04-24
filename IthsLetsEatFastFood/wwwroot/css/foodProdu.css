@@ -1,0 +1,16 @@
+﻿img{
+    height: 300px;
+    overflow: hidden;
+}
+.foodProdu-image {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    
+}
+.foodprodu-image img{
+    height:100%;
+    width:100%;
+}
+    
+

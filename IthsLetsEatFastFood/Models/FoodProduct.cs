@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IthsLetsEatFastFood.Models
 {
-    public class FoodProducts
+    public class FoodProduct
     {
         public Guid Id { get; set;}
         public string Name { get; set; }

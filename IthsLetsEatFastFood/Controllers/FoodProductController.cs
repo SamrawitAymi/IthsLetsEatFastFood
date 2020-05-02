@@ -4,40 +4,42 @@ using System.Linq;
 using System.Threading.Tasks;
 using IthsLetsEatFastFood.Models;
 using Microsoft.AspNetCore.Mvc;
+using IthsLetsEatFastFood.Repository;
 
 namespace IthsLetsEatFastFood.Controllers
 {
     public class FoodProductController : Controller
     {
+        private IFoodProductRepository _foodProductRepository;
 
-        
+        public FoodProductController()
+        {
+
+            _foodProductRepository = new MockFoodProductRepository();
+
+        }
+
+        //public JsonResult Index()
+        //{
+        //   return _foodProductRepository.GetFoodProduct(Guid Id).Name;
+        //}
         public IActionResult Index()
         {
-            List<FoodProduct> foodProducts = new List<FoodProduct>();
-            FoodProduct foodProduct = new FoodProduct()
-            {
 
-                Id = new Guid(),
-                Name = "Broccoli Cheddar Soup",
-                Description = "Butter,yellow onion, carrot,broccoli, garlic, flour,chicken, " +
-                       "beer, milk, Cheddar cheese,Salt and black pepper to taste,Tabasco sauce, Parmesan crisps",
-                Price = 79.99M,
-                ImageUrl = "https://i0.wp.com/www.eatthis.com/wp-content/uploads/2019/01/healthy-broccoli-chedder-soup.jpg?resize=640%2C360&ssl=1"
-            };
-            foodProducts.Add(foodProduct);
-            ViewData["FoodProds"] = foodProducts;
+            MockFoodProductRepository t = new MockFoodProductRepository();
 
+            ViewData["FoodProds"]= t.InitData();
 
             return View();
         }
 
         public IActionResult AddToCart(Guid id)
         {
-            var cart = Request.Cookies.SingleOrDefault(c=>c.Key=="Cart");
+            var cart = Request.Cookies.SingleOrDefault(c => c.Key == "Cart");
             string cartContent = "";
-            if (cart.Value  != null)
+            if (cart.Value != null)
             {
-               cartContent = cart.Value;
+                cartContent = cart.Value;
                 cartContent += "," + id;
 
             }
@@ -45,12 +47,12 @@ namespace IthsLetsEatFastFood.Controllers
             {
                 cartContent += "," + id;
             }
-           
+
             Response.Cookies.Append("Cart", cartContent);
-            
+
             return RedirectToAction("Index");
         }
 
 
-    }
+    } 
 }

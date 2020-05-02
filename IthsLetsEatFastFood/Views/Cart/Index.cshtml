@@ -1,0 +1,46 @@
+﻿@model IthsLetsEatFastFood.ViewModel.CartViewModel
+
+@{
+    ViewData["Title"] = "Cart";
+    var vm = ViewBag.cartList;
+    var products = (List<FoodProduct>)ViewBag.Product;
+}
+
+
+<h1>Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in products) /*Models.FoodProduct*/
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @vm
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new {/*id.item.Delete.Key*/ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

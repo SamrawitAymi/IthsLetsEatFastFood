@@ -12,6 +12,7 @@ using IthsLetsEatFastFood.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using IthsLetsEatFastFood.Repository;
 
 namespace IthsLetsEatFastFood
 {
@@ -34,6 +35,8 @@ namespace IthsLetsEatFastFood
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddMvc();
+            services.AddSingleton<IFoodProductRepository, MockFoodProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,8 +8,8 @@ namespace IthsLetsEatFastFood.Repository
 {
     interface IFoodProductRepository
     {
-        FoodProduct GetFoodProduct(int Id);
-        void GetAll();
+        FoodProduct GetFoodProById(Guid id);
+        IEnumerable<FoodProduct> GetAll();
        
     }
 }

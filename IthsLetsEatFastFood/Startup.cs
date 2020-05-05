@@ -35,7 +35,7 @@ namespace IthsLetsEatFastFood
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddMvc();
+            //services.AddMvc();
             services.AddSingleton<IFoodProductRepository, MockFoodProductRepository>();
         }
 

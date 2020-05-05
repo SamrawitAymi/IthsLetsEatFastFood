@@ -12,27 +12,21 @@ namespace IthsLetsEatFastFood.Controllers
     {
         private IFoodProductRepository _foodProductRepository;
 
-        public FoodProductController()
+        public FoodProductController(IFoodProductRepository foodProductRepository)
         {
 
-            _foodProductRepository = new MockFoodProductRepository();
+            _foodProductRepository = foodProductRepository;
 
         }
 
-        //public JsonResult Index()
-        //{
-        //   return _foodProductRepository.GetFoodProduct(Guid Id).Name;
-        //}
         public IActionResult Index()
         {
-
-            MockFoodProductRepository t = new MockFoodProductRepository();
-
-            ViewData["FoodProds"]= t.InitData();
-
-            return View();
+            var foodProducts = _foodProductRepository.GetAll();
+            return View(foodProducts);
+           
         }
-
+ 
+       // [Autohorize]
         public IActionResult AddToCart(Guid id)
         {
             var cart = Request.Cookies.SingleOrDefault(c => c.Key == "Cart");

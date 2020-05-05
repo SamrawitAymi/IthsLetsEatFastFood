@@ -2,45 +2,54 @@
 
 @{
     ViewData["Title"] = "Cart";
-    var vm = ViewBag.cartList;
-    var products = (List<FoodProduct>)ViewBag.Product;
+
 }
 
 
 <h1>Cart</h1>
+<form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Amount
-            </th>
-            <th>
-                Price
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in products) /*Models.FoodProduct*/
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @vm
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new {/*id.item.Delete.Key*/ })
-                </td>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.FoodProducts.Count; i++)
+            {
+                 <tr>
+                     <td>
+                         @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Name)
+                         @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Name)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Price)
+                         @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Price)
+                     </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].Amount)
+                         @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].Amount)
+                     </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new {/*id.item.Delete.Key*/ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        Total: @Model.TotalPrice.ToString("C")
+        <input type="submit" class="float-right btn btn-success" value="Order"/>
+    </div>
+    @Html.HiddenFor(modelItem => modelItem.TotalPrice)
+</form>

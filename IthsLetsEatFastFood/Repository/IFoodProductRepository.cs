@@ -6,7 +6,7 @@ using IthsLetsEatFastFood.Models;
 
 namespace IthsLetsEatFastFood.Repository
 {
-    interface IFoodProductRepository
+    public interface IFoodProductRepository
     {
         FoodProduct GetFoodProById(Guid id);
         IEnumerable<FoodProduct> GetAll();

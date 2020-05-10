@@ -1,0 +1,73 @@
+﻿@model IthsLetsEatFastFood.Models.Order
+
+@{
+    ViewData["Title"] = "OrderSuccess";
+}
+
+<h1>OrderSuccess</h1>
+<div class="row">
+    <div class="col-sm-12 col-md-4">
+        <div class="card bg-light">
+            <div class="card-header">
+                @Html.LabelFor(modelItem => modelItem.Id)
+                @Html.DisplayFor(modelItem => modelItem.Id)
+
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <div>
+                        @Html.LabelFor(modelItem => modelItem.Date)
+                        @Html.DisplayFor(modelItem => modelItem.Date)
+                    </div>
+                    <h4> Contact Information</h4>
+                    <address>
+                        @Html.DisplayFor(modelItem => modelItem.UserId)
+                    </address>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="col-sm-12 col-md-8"></div>
+<table class="table table-responsive-sm table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new OrderRow().Amount)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderRows)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodProduct.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodProduct.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                
+                @*<td>
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    Total:@Model.TotalPrice.ToString("C");
+</div>

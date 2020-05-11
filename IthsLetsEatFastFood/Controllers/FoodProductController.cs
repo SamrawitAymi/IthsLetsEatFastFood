@@ -101,7 +101,7 @@ namespace IthsLetsEatFastFood.Controllers
 
     }
 
-   
+
     // "https://www.c-sharpcorner.com/article/session-state-in-asp-net-core-and-mvc-core/"
     public static class SessionExtensions
     {
@@ -113,7 +113,7 @@ namespace IthsLetsEatFastFood.Controllers
         public static T Get<T>(this ISession session, string key)
         {
             var value = session.GetString(key);
-            return value == null ? default(T) :
+            return value == null ? default :
                                   JsonConvert.DeserializeObject<T>(value);
         }
     }

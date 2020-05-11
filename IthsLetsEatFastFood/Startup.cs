@@ -41,6 +41,8 @@ namespace IthsLetsEatFastFood
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(1);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
         }
 
@@ -62,11 +64,13 @@ namespace IthsLetsEatFastFood
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseSession();
+            
 
             app.UseAuthentication();
             app.UseAuthorization();
 
+
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

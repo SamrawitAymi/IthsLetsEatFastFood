@@ -1,4 +1,4 @@
-﻿@model IthsLetsEatFastFood.Models.Order
+﻿@model IthsLetsEatFastFood.ViewModel.OrderViewModel
 
 @{
     ViewData["Title"] = "OrderSuccess";
@@ -9,19 +9,39 @@
     <div class="col-sm-12 col-md-4">
         <div class="card bg-light">
             <div class="card-header">
-                @Html.LabelFor(modelItem => modelItem.Id)
-                @Html.DisplayFor(modelItem => modelItem.Id)
+                @Html.LabelFor(modelItem => modelItem.Order.Id)
+                @Html.DisplayFor(modelItem => modelItem.Order.Id)
 
             </div>
             <div class="card-body">
                 <div class="card-text">
                     <div>
-                        @Html.LabelFor(modelItem => modelItem.Date)
-                        @Html.DisplayFor(modelItem => modelItem.Date)
+                        @Html.LabelFor(modelItem => modelItem.Order.Date)
+                        @Model.Order.Date.ToString("yyyy MMMM dd HH:mm:ss")
                     </div>
+
                     <h4> Contact Information</h4>
+                        <address>
+                    <div>
+                            @Html.DisplayFor(modelItem => modelItem.User.UserName)
+                            <br />
+                            @Html.DisplayFor(modelItem => modelItem.User.FirstName)
+                            @Html.DisplayFor(modelItem => modelItem.User.LastName)
+                            <br />
+                            @Html.LabelFor(modelItem => modelItem.User.PhoneNumber)
+                            @Html.DisplayFor(modelItem => modelItem.User.PhoneNumber)
+                    </div>
+
+                        </address>
+                    
+                    <h4> Address</h4>
                     <address>
-                        @Html.DisplayFor(modelItem => modelItem.UserId)
+                        <div>
+                            @Html.DisplayFor(modelItem => modelItem.User.StreetAddress)
+                            @Html.DisplayFor(modelItem => modelItem.User.PostalCode)
+                            @Html.DisplayFor(modelItem => modelItem.User.City)
+
+                        </div>
                     </address>
                 </div>
 
@@ -48,7 +68,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.OrderRows)
+        @foreach (var item in Model.Order.OrderRows)
         {
             <tr>
                 <td>
@@ -69,5 +89,5 @@
     </tbody>
 </table>
 <div>
-    Total:@Model.TotalPrice.ToString("C");
+    Total:@Model.Order.TotalPrice.ToString("C");
 </div>

@@ -27,6 +27,7 @@ namespace IthsLetsEatFastFood.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
     }

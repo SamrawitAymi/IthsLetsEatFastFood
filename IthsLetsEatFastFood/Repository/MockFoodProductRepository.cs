@@ -35,7 +35,7 @@ namespace IthsLetsEatFastFood.Repository
                     Description = "Butter,yellow onion, carrot,broccoli, garlic, flour,chicken, " +
                                        "beer, milk, Cheddar cheese,Salt and black pepper to taste,Tabasco sauce, Parmesan crisps",
                     Price = 79.99M,
-                    ImageUrl = "~Image/broccoli-Chedder soup.jpg"
+                    ImageUrl = "https://www.simplyrecipes.com/wp-content/uploads/2018/02/Broccoli-Cheddar-Soup-LEAD-3-600x840.jpg"
 
                     },
                 new FoodProduct
@@ -44,7 +44,7 @@ namespace IthsLetsEatFastFood.Repository
                     Name = "Cheeseburger",
                     Description = "Becon,onion, Beef,Salad, tomato, cheese",
                     Price = 69.99M,
-                    ImageUrl = "~Image/burger.jpg"
+                    ImageUrl = "https://www.simplyrecipes.com/wp-content/uploads/2019/04/Stovetop-Cheeseburgers-hero1_v2-600x841.jpg"
                 },
                 new FoodProduct
                 {
@@ -53,7 +53,8 @@ namespace IthsLetsEatFastFood.Repository
                     Description = "butter,shallot,garlic, tomato paste,red pepper flakes,vodka,Kosher salt,pasta, penne " +
                                 "or rigatoni,,heavy cream, Parmesan, Basil",
                     Price = 89.99M,
-                    ImageUrl = "~Image/pasta.jpg"},
+                    ImageUrl = "https://www.simplyrecipes.com/wp-content/uploads/2012/02/pasta-carbonara-vertical-a-1200-600x892.jpg"
+                },
                 new FoodProduct
                 {
                     Id = Guid.NewGuid(),
@@ -61,7 +62,8 @@ namespace IthsLetsEatFastFood.Repository
                     Description = "chicken, flour, Parmesan cheese, paprika, dry mustard, " +
                         "dried oregano, crumbled,salt, black pepper,milk, Peanut oil",
                     Price = 89.99M,
-                    ImageUrl = "~Image/fried chicken.jpg"},
+                    ImageUrl = "https://www.simplyrecipes.com/wp-content/uploads/2019/09/Cacio-e-Pepe-Chicken-Wings-Lead-8-600x840.jpg"
+                },
 
                 new FoodProduct
                 {
@@ -79,7 +81,7 @@ namespace IthsLetsEatFastFood.Repository
                     Name = "Salad",
                     Description = "Seafrost Salt and Pepper Squid,Soy sauce,Mirin,Mixed salad leaves,Wakame seaweed",
                     Price = 39.99M,
-                    ImageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.unileverfoodsolutions.com.au%2Frecipe%2Fsalt-and-pepper-squid-salad-R0064938.html&psig=AOvVaw3fyiZlmH3HVNLRWEOJP1kj&ust=1588604247870000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjF2576l-kCFQAAAAAdAAAAABAK"
+                    ImageUrl = "https://www.simplyrecipes.com/wp-content/uploads/2007/10/waldorf-salad-vertical-a3-1500-600x837.jpg"
                 },
 
                 new FoodProduct
@@ -88,9 +90,8 @@ namespace IthsLetsEatFastFood.Repository
                     Name = "Vegan Sandwich",
                     Description = "slices bread-toasted,slices tomato,light mayonnaise mixed with wasabi,iceberg lettuce leaves,mozzarella cheese",
                     Price = 59.99M,
-                    ImageUrl = "https://c.ndtvimg.com/uv4mhm28_sandwich_625x300_31_July_18.jpg"
+                    ImageUrl = "https://www.simplyrecipes.com/wp-content/uploads/2019/10/Vegan-Lentil-Sloppy-LEAD-1-600x840.jpg"
                 }
-
             };
             foodProducts.Add(foodProduct);
             

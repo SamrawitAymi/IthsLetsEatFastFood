@@ -18,7 +18,7 @@ namespace IthsLetsEatFastFood.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
 
         private const string sessionKeyCart = "_cart";
-        private const string sessionKeyUserId = "_userId";
+        //private const string sessionKeyUserId = "_userId";
 
         public CartController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
         {
@@ -47,13 +47,13 @@ namespace IthsLetsEatFastFood.Controllers
             Order order = new Order();
             order.Date = DateTime.Now;
             order.TotalPrice = cart.TotalPrice;
-            var userIdentity = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            order.UserId = Guid.Parse(_userManager.GetUserId(User));
             order.OrderRows = cart.FoodProducts.Select(cartItem => new OrderRow(cartItem)
             {
                 Amount = cartItem.Amount,
                 FoodProduct = cartItem.FoodProduct
             }).ToList();
+            var userIdentity = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            order.UserId = Guid.Parse(_userManager.GetUserId(User));
             //foreach (var cartItem in cart.FoodProducts)
             //{
             //    order.OrderRows.Add((OrderRow)cartItem);
@@ -84,6 +84,8 @@ namespace IthsLetsEatFastFood.Controllers
         //    viewModel.User = user;
         //    return View("OrderSuccess", viewModel);
         //}
+
+
         //var currentCartItems = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
         //var userSessionId = HttpContext.Session.Get<Guid>(sessionKeyUserId);
         //var actualUserId = Guid.Parse(_userManager.GetUserId(User));

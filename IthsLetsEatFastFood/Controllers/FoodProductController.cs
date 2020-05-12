@@ -15,15 +15,7 @@ namespace IthsLetsEatFastFood.Controllers
 {
     public class FoodProductController : Controller
     {
-        //private IFoodProductRepository _foodProductRepository;
-
-        //public FoodProductController(IFoodProductRepository foodProductRepository)
-        //{
-
-        //    _foodProductRepository = foodProductRepository;
-
-        //}
-
+        
         private readonly IFoodProductRepository _foodProductRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -54,9 +46,7 @@ namespace IthsLetsEatFastFood.Controllers
 
             List<CartItem> cartItems = new List<CartItem>();
 
-            //var cart = Request.Cookies.SingleOrDefault(c => c.Key == "Cart");
-            //string cartContent = "";
-            //if (cart.Value != null)
+            
             if (currentCartItems != null)
             {
                 cartItems = currentCartItems;
@@ -69,8 +59,7 @@ namespace IthsLetsEatFastFood.Controllers
                 }
 
                 HttpContext.Session.Set<Guid>(sessionKeyUserId, actualUserId);
-                //cartContent = cart.Value;
-                //cartContent += "," + id;
+              
             }
             if (currentCartItems != null && currentCartItems.Any(fp => fp.FoodProduct.Id == id))
             {
@@ -88,12 +77,8 @@ namespace IthsLetsEatFastFood.Controllers
                 };
                 cartItems.Add(newCartItem);
             }
-            //else
-            //{
-            //    cartContent += "," + id;
-            //}
+            
             HttpContext.Session.Set<List<CartItem>>(sessionKeyCart, cartItems);
-            //Response.Cookies.Append("Cart", cartContent);
 
             return RedirectToAction("Index");
         }

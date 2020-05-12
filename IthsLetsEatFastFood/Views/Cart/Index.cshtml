@@ -49,7 +49,8 @@
     </table>
     <div>
         Total: @Model.TotalPrice.ToString("C")
-        <input type="submit" class="float-right btn btn-success" value="Order"/>
+        <input type="submit" class="float-right btn btn-success" value="Order" />
     </div>
     @Html.HiddenFor(modelItem => modelItem.TotalPrice)
+
 </form>

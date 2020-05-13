@@ -21,8 +21,8 @@
                     </div>
 
                     <h4> Contact Information</h4>
-                        <address>
-                    <div>
+                    <address>
+                        <div>
                             @Html.DisplayFor(modelItem => modelItem.User.UserName)
                             <br />
                             @Html.DisplayFor(modelItem => modelItem.User.FirstName)
@@ -30,10 +30,10 @@
                             <br />
                             @Html.LabelFor(modelItem => modelItem.User.PhoneNumber)
                             @Html.DisplayFor(modelItem => modelItem.User.PhoneNumber)
-                    </div>
+                        </div>
 
-                        </address>
-                    
+                    </address>
+
                     <h4> Address</h4>
                     <address>
                         <div>
@@ -50,44 +50,45 @@
 
     </div>
 </div>
-<div class="col-sm-12 col-md-8"></div>
-<table class="table table-responsive-sm table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => new OrderRow().Amount)
-            </th>
-          
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Order.OrderRows)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FoodProduct.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FoodProduct.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                
-                @*<td>
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    </td>*@
-            </tr>
-        }
-    </tbody>
-</table>
-<div>
+ <div class="col-sm-12 col-md-8">
+    <div class="card-body">
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => new OrderRow().Amount)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+                <tbody>
+                    @foreach (var item in Model.Order.OrderRows)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FoodProduct.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FoodProduct.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+
+                            @*<td>
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                </td>*@
+                        </tr>
+                        }
+                </tbody>
+        </table>
+    </div>
     Total:@Model.Order.TotalPrice.ToString("C");
 </div>

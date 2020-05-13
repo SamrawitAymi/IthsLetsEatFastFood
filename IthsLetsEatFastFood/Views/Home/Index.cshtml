@@ -7,12 +7,12 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>*@
 
-    <div class="container">
+    <div class="d-flex flex-row justify-content-around align-content-around flex-wrap">
 
         <div class="container">
             <div class="row-fluid">
 
-                <div class="main_top">
+                <div class="display-4">
                     <h2>WELCOME TO ITHS LET'S EAT FASTFOOD</h2>
                 </div>
                 <div class="main_top_strip">
@@ -107,7 +107,7 @@
                             <div class="clear"></div>
                         </div>
                         <div class="box1_data">
-                            <a href="@Url.Action("Home", "", new { Id = 1 })" class="links">
+                            <a href="@Url.Action("Index", "FoodProduct", new { Id = 1 })" class="links">
                                 <img src="@Url.Content("~/Image/man dlivering food.jpg")">Delivery within 40 minutes
                             </a>
                             <h3> </h3>

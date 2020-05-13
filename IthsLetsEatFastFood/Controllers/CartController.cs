@@ -34,12 +34,24 @@ namespace IthsLetsEatFastFood.Controllers
             CartViewModel vm= new CartViewModel();
             vm.FoodProducts = cart;
 
-
             vm.TotalPrice = vm.FoodProducts.Sum(fp => fp.FoodProduct.Price * fp.Amount);
 
             return View(vm);
         }
 
+        public IActionResult Delete(Guid id)
+        {
+            var cart = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart).ToList();
+            if (cart != null)
+            {
+                HttpContext.Session.Remove(sessionKeyCart);
+                HttpContext.Session.Set(sessionKeyCart, cart.Where(x => x.FoodProduct.Id != id));               
+            }            
+            return RedirectToAction("Index");
+
+        }
+        
+        
         [HttpPost]
         public async Task<IActionResult> MyOrder([Bind("TotalPrice, FoodProduct")] CartViewModel cart)
         {
@@ -66,6 +78,8 @@ namespace IthsLetsEatFastFood.Controllers
         {
             return View(order);
         }
+
+
     }
    
 }

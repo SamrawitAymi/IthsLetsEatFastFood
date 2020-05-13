@@ -8,18 +8,7 @@ using IthsLetsEatFastFood.Models;
 
 namespace IthsLetsEatFastFood.Repository
 {
-    //public class MockFoodProductRepository: IFoodProductRepository
-    //{
-    //    private List<FoodProduct> _foodProductList;
-
-    //    public MockFoodProductRepository()
-    //    {
-    //        InitData();
-    //    }
-        
-    //    public List<FoodProduct> InitData()
-    //    {
-    //        _foodProductList = new List<FoodProduct>();
+    
     public class MockFoodProductRepository: IFoodProductRepository
     {
         private List<FoodProduct> foodProducts = new List<FoodProduct>();
@@ -97,12 +86,30 @@ namespace IthsLetsEatFastFood.Repository
             
         }
 
+        public FoodProduct DeleteById(Guid id)
+        {
+            FoodProduct foodProduct = new FoodProduct();
+            try
+            {
+                foodProduct = foodProducts.Where(fp => fp.Id == id).FirstOrDefault();
+                if (foodProduct != null)
+                {
+                    foodProducts.Remove(foodProduct); 
+                    
+                }     
+            }
+            catch (Exception ex)
+            {
+                   throw ex;
+            }
+            return foodProduct;
+        }
+
         public IEnumerable<FoodProduct> GetAll()
         {
             return foodProducts;
         }
-
-        
+                
         public FoodProduct GetFoodProById(Guid id)
         {
             return foodProducts.Where(f => f.Id == id).FirstOrDefault();

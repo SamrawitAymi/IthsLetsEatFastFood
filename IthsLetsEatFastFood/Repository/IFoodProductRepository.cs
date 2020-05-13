@@ -10,6 +10,9 @@ namespace IthsLetsEatFastFood.Repository
     {
         FoodProduct GetFoodProById(Guid id);
         IEnumerable<FoodProduct> GetAll();
+        FoodProduct DeleteById(Guid id);
+
+        //void DeleteById(Guid id);
        
     }
 }

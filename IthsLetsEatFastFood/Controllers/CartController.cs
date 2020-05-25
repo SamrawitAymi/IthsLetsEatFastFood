@@ -33,9 +33,7 @@ namespace IthsLetsEatFastFood.Controllers
 
             CartViewModel vm= new CartViewModel();
             vm.FoodProducts = cart;
-
             vm.TotalPrice = vm.FoodProducts.Sum(fp => fp.FoodProduct.Price * fp.Amount);
-
             return View(vm);
         }
 

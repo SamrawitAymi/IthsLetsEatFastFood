@@ -23,7 +23,6 @@ namespace IthsLetsEatFastFood.Controllers
         private const string sessionKeyUserId = "_userId";
 
 
-
         public FoodProductController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
         {
             _foodProductRepository = foodProductRepository;

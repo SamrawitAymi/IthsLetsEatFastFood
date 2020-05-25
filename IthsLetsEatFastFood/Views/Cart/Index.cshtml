@@ -22,38 +22,37 @@
                 <th>
                     Price
                 </th>
+               
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @for (int i = 0; i < Model.FoodProducts.Count; i++)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Name)
-                    @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Name)
-                </td>
-                <td>
-                    @Html.EditorFor(modelItem => modelItem.FoodProducts[i].Amount, new { htmlAttributes = new { @id = "qty" } })
-                    @*<span id="qty" value="FoodProducts[i].Amount"></span>*@
-                    @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Price, new { htmlAttributes = new { @id = "price" } })
-                    @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Price)
-                </td>
-                <td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Name)
+                        @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Name)
+                    </td>
+                    <td>
+                        @Html.EditorFor(modelItem => modelItem.FoodProducts[i].Amount, new { htmlAttributes = new { @id = "qty" } })
+                        @*<span id="qty" value="FoodProducts[i].Amount"></span>*@
+                        @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Price, new { htmlAttributes = new { @id = "price" } })
+                        @Html.HiddenFor(modelItem => modelItem.FoodProducts[i].FoodProduct.Price)
+                    </td>
+                    <td>
 
-                    @Html.ActionLink("Delete", "Delete", new { @id = @Model.FoodProducts[i].FoodProduct.Id })
-                </td>
-            </tr>
+                         @Html.ActionLink("Delete", "Delete", new {@id=@Model.FoodProducts[i].FoodProduct.Id })
+                    </td>
+                </tr>
             }
         </tbody>
-        <tfoot>
-            <tr><td></td><td><b>Grand Total:</b></td><td> @Model.TotalPrice.ToString("C")</td></tr>
-        </tfoot>
     </table>
     <div>
+        Grand Total: @Model.TotalPrice.ToString("C")
         <label id="total"></label>
 
         <input type="submit" class="float-right btn btn-success" value="Order" />
@@ -71,8 +70,8 @@
         
         var amount = document.getElementById('qty').value;
         var price = document.getElementById('price').value;
-        var total = amount * price;
-        console.log(total);
+        var result = amount * price;
+        console.log(result);
     }
    
 

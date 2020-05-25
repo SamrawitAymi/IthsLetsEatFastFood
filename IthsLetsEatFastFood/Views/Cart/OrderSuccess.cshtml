@@ -49,49 +49,46 @@
         </div>
 
     </div>
+</div>
+ <div class="col-sm-12 col-md-8">
+    <div class="card-body">
+        <table class="table table-responsive-sm table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => new OrderRow().Amount)
+                    </th>
 
-    <div class="col-sm-12 col-md-8">
-        <div class="card-body">
-            <table class="table table-responsive-sm table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Name)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => new OrderRow().Amount)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => new OrderRow().FoodProduct.Price)
-                        </th>
-
-                        <th></th>
-                    </tr>
-                </thead>
+                    <th></th>
+                </tr>
+            </thead>
                 <tbody>
                     @foreach (var item in Model.Order.OrderRows)
-                    {
+                        {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.FoodProduct.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Amount)
+                                @Html.DisplayFor(modelItem => item.FoodProduct.Price)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FoodProduct.Price)
+                                @Html.DisplayFor(modelItem => item.Amount)
                             </td>
 
                             @*<td>
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    </td>*@
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                </td>*@
                         </tr>
-                    }
+                        }
                 </tbody>
-                        <tfoot> 
-                            <tr> <td>  </td><td> <b> Total: </b></td><td> @Model.Order.TotalPrice.ToString("C")</td> </tr>   
-                            </tfoot>
-            </table>
-        </div>
-         </div>
+        </table>
+    </div>
+    Total:@Model.Order.TotalPrice.ToString("C");
 </div>

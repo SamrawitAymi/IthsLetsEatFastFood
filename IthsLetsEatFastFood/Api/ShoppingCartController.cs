@@ -2,42 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IthsLetsEatFastFood.Controllers;
 using IthsLetsEatFastFood.Models;
-using Microsoft.AspNetCore.Mvc;
 using IthsLetsEatFastFood.Repository;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using IthsLetsEatFastFood.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
-namespace IthsLetsEatFastFood.Controllers
+namespace IthsLetsEatFastFood.Api
 {
-    public class FoodProductController : Controller
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class ShoppingCartController : ControllerBase
     {
-        
-        private readonly IFoodProductRepository _foodProductRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IFoodProductRepository _foodProductRepository;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
-
-
-        public FoodProductController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
+        public ShoppingCartController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
         {
-            _foodProductRepository = foodProductRepository;
             _userManager = userManager;
+            _foodProductRepository = foodProductRepository;
         }
 
-
-        public IActionResult Index()
-        {
-            var foodProducts = _foodProductRepository.GetAll();
-            return View(foodProducts);
-           
-        }
- 
-       [Authorize]
         public IActionResult AddToCart(Guid id)
         {
             //var apiService = Service.AddToCart(id);
@@ -47,7 +36,7 @@ namespace IthsLetsEatFastFood.Controllers
 
             List<CartItem> cartItems = new List<CartItem>();
 
-            
+
             if (currentCartItems != null)
             {
                 cartItems = currentCartItems;
@@ -60,7 +49,7 @@ namespace IthsLetsEatFastFood.Controllers
                 }
 
                 HttpContext.Session.Set<Guid>(sessionKeyUserId, actualUserId);
-              
+
             }
             if (currentCartItems != null && currentCartItems.Any(fp => fp.FoodProduct.Id == id))
             {
@@ -78,29 +67,10 @@ namespace IthsLetsEatFastFood.Controllers
                 };
                 cartItems.Add(newCartItem);
             }
-            
+
             HttpContext.Session.Set<List<CartItem>>(sessionKeyCart, cartItems);
 
-            return RedirectToAction("Index");
-        }
-
-
-    }
-
-
-    // "https://www.c-sharpcorner.com/article/session-state-in-asp-net-core-and-mvc-core/"
-    public static class SessionExtensions
-    {
-        public static void Set<T>(this ISession session, string key, T value)
-        {
-            session.SetString(key, JsonConvert.SerializeObject(value));
-        }
-
-        public static T Get<T>(this ISession session, string key)
-        {
-            var value = session.GetString(key);
-            return value == null ? default :
-                                  JsonConvert.DeserializeObject<T>(value);
+            return Ok();
         }
     }
 }

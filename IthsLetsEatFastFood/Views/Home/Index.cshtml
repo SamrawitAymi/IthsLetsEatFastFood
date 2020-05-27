@@ -3,34 +3,29 @@
 }
 
 @*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+<div class="d-flex flex-row justify-content-around align-content-around flex-wrap">
 
-    <div class="d-flex flex-row justify-content-around align-content-around flex-wrap">
+    <div class="container">
+        <div class="row-fluid">
+            <img src="~/Image/logo.JPG" alt="" title="Logo" style="width:10%" />
 
-        <div class="container">
-            <div class="row-fluid">
+            <div class="display-4">
 
-                <div class="display-4">
-                    <h2>WELCOME TO ITHS LET'S EAT FASTFOOD</h2>
-                </div>
-                <div class="main_top_strip">
-                    <img src="~/Image/logo.JPG" alt="" />
-                </div>
-                <div class="clear"></div>
-
+                <center><h1>WELCOME TO ITHS LET'S EAT FASTFOOD</h1></center>
             </div>
         </div>
-
-        <div class="container">
-            <div class="row-fluid  main_top">
-
-                <div class="col-sm-4">
-
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <center>
                 <div class="col-sm-6  content_top_data">
                     <div class="box_top">
-                        <h2>PIZZA</h2>
+                        <h4>PIZZA</h4>
 
                     </div>
                     <div class="content_top_img">
@@ -38,83 +33,89 @@
                         <img src="~/Image/pizza.jpg" alt="" />
                     </div>
                 </div>
-                    <h3>Our Speciality</h3>
-                    <h2 style="font-family:'Javanese Text';">
-                        We use only high quality and organic raw materials, which is imported  from Italy.
-                        our pizza and salad  have mozzarella cheese and we use only fresh vegetables.
-                        Our tomato sauce is also well known for its unique test.
-                    </h2>
-                </div>
-                <div class="col-sm-4">
+            </center>
+        </div>
+        <div class="col-md-6">
+            <center>
+                <div class="col-sm-6  content_top_data">
                     <div class="box_top">
-                        <h2>SALAD</h2>
+                        <h4>SALAD</h4>
 
                     </div>
                     <div class="content_top_img">
                         <img src="~/Image/salad.jpg" />
                     </div>
-
                 </div>
-                <div class="col-sm-2"></div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row-fluid">
-                <div class="col-sm-4">
-                    <div class="box1">
-                        <div class="box_top">
-                            <h2>FRIED CHICKEN</h2>
-
-                        </div>
-                        <div class="box1_data">
-
-                            <h4 style="font-family:'Times New Roman', Times, serif;">
-                                On Super Bowl Sunday — or any day of the week, really —
-                                there’s a spicy wing out there for everyone. Here are
-                                the absolute best chicken wings in Stockholm.
-                            </h4>
-                            <p><span>read more</span></p>
-                        </div>
-                        <div class="box1_img">
-                            <img src="~/Image/fried chicken.jpg" />
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="box2">
-                        <div class="box_top">
-                            <h2>INDOOR SERVICES</h2>
-
-                            <div class="clear"></div>
-                        </div>
-                        <div class="box2_data">
-                            <h3> We don't have indoor service due to Corona!</h3>
-                        </div>
-                        <div class="box1_img">
-                            <img src="~/Image/logo.JPG" alt="" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="box3">
-                        <div class="box_top">
-
-                            <h2>ONLINE ORDER</h2>
-                         
-                            <div class="clear"></div>
-                        </div>
-                        <div class="box1_data">
-                            <a href="@Url.Action("Index", "FoodProduct", new { Id = 1 })" class="links">
-                                <img src="@Url.Content("~/Image/man dlivering food.jpg")">Delivery within 40 minutes
-                            </a>
-                            <h3> </h3>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
+            </center>
         </div>
     </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <center>
+            <div class="col-md-5">
+
+                <h5>Our Speciality</h5>
+
+                <h6 style="font-family:'Javanese Text';">
+                    We use only high quality and organic raw materials, which is imported  from Italy.
+                    our pizza and salad  have mozzarella cheese and we use only fresh vegetables.
+                    Our tomato sauce is also well known for its unique test.
+                </h6>
+            </div>
+        </center>
+    </div>
+    <div class="row">
+        <center>
+            <div class="box1_data">
+                <h4>FRIED CHICKEN</h4>
+            </div>
+            <div class="content_top_img">
+                <img src="~/Image/fried chicken.jpg" />
+            </div>
+        </center>
+    </div>
+    <div class="row">
+        <center>
+            <div class="box1_data">
+                <h6 style="font-family:'Times New Roman', Times, serif;">
+                    On Super Bowl Sunday — or any day of the week, really —
+                    there’s a spicy wing out there for everyone. Here are
+                    the absolute best chicken wings in Stockholm.
+                </h6>
+            </div>
+        </center>
+    </div>
+    <div class="row">
+
+
+        <center>
+            <div class="box1_data">
+                <h4>INDOOR SERVICES</h4>
+            </div>
+            <div class="content_top_img">
+                We don't have indoor service due to Corona!
+            </div>
+        </center>
+
+    </div>
+
+
+    <div class="row">
+        <center>
+            <div class="box1_data">
+
+                <h4>ONLINE ORDER</h4>
+            </div>
+            <div class="box1_data">
+                <img src="~/Image/logo.JPG" alt="" title="Logo" style="width:10%" />
+                <a href="@Url.Action("Index", "FoodProduct", new { Id = 1 })" class="links">
+                    <img src="@Url.Content("~/Image/man dlivering food.jpg")" style="width:20%">Delivery within 40 minutes
+                </a>
+            </div>
+        </center>
+    </div>
+</div>
+
+       

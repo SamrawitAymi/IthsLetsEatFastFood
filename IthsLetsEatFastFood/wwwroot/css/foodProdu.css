@@ -8,5 +8,8 @@
 .foodprodu-image img{
     width:100%;
 }
-    
+#cart-amount{
+    background-color:red;
+    border-radius: 50%;
+}    
 

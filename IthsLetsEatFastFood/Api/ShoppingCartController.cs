@@ -26,7 +26,19 @@ namespace IthsLetsEatFastFood.Api
             _userManager = userManager;
             _foodProductRepository = foodProductRepository;
         }
+        [HttpGet]
+        public JsonResult GetCartAmount()
+        {
+            var currentCartItems = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
+            if (currentCartItems == null)
+            {
+                return new JsonResult(0);
+            }
+            var totalItems = currentCartItems.Sum(cart => cart.Amount);
+            return new JsonResult(totalItems);
+        }
 
+        [HttpGet]
         public IActionResult AddToCart(Guid id)
         {
             //var apiService = Service.AddToCart(id);
@@ -69,8 +81,9 @@ namespace IthsLetsEatFastFood.Api
             }
 
             HttpContext.Session.Set<List<CartItem>>(sessionKeyCart, cartItems);
+            var totalItems = cartItems.Sum(cart => cart.Amount);
 
-            return Ok();
+            return Ok(totalItems);
         }
     }
 }

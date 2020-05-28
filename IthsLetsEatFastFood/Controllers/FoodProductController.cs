@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using IthsLetsEatFastFood.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using System.Net.Http;
+using Lets.WebService.Client;
 
 namespace IthsLetsEatFastFood.Controllers
 {
@@ -18,23 +20,23 @@ namespace IthsLetsEatFastFood.Controllers
         
         private readonly IFoodProductRepository _foodProductRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILetsFoodService _foodService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
 
-
-        public FoodProductController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
+        public FoodProductController(IFoodProductRepository foodProductRepository, ILetsFoodService foodService,
+            UserManager<ApplicationUser> userManager)
         {
-            _foodProductRepository = foodProductRepository;
+                _foodProductRepository = foodProductRepository;
             _userManager = userManager;
+            _foodService = foodService;
         }
 
 
         public IActionResult Index()
         {
-            var foodProducts = _foodProductRepository.GetAll();
-            return View(foodProducts);
-           
+            return View(_foodService.GetProductList());                    
         }
  
        [Authorize]
@@ -70,10 +72,16 @@ namespace IthsLetsEatFastFood.Controllers
             }
             else
             {
-                var foodProduct = _foodProductRepository.GetFoodProById(id);
+                var foodProduct = _foodService.GetProductById(id);
                 CartItem newCartItem = new CartItem()
                 {
-                    FoodProduct = foodProduct,
+                    FoodProduct = new Models.FoodProduct {
+                        Id=foodProduct.Id,
+                        Description=foodProduct.Description,
+                        ImageUrl=foodProduct.ImageUrl,
+                        Name=foodProduct.Name,
+                        Price=(decimal)foodProduct.Price
+                    },
                     Amount = 1
                 };
                 cartItems.Add(newCartItem);

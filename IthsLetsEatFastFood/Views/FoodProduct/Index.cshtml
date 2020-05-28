@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IthsLetsEatFastFood.Models.FoodProduct>
+﻿@model IEnumerable<Lets.WebService.Client.FoodProduct>
 
 @{
     ViewData["Title"] = "FoodProducts";
@@ -22,7 +22,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     @*<span class="float-right">@Html.ActionLink("Buy","AddToCart", "FoodProduct", new { id = item.Id }, new { @class = "btn btn-success" })</span>*@
-                    <span class="float-right"><botton class = "btn btn-success"> Buy </botton> </span>
+                    <span class="float-right"><botton class = "btn btn-success" onclick ="AddToCart(@item.Id)"> Buy </botton> </span>
 
                 }
             </p>

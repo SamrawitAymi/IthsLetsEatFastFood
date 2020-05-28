@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IthsLetsEatFastFood.Repository;
 using IthsLetsEatFastFood.Models;
+using Lets.WebService.Client;
 
 namespace IthsLetsEatFastFood
 {
@@ -29,6 +30,15 @@ namespace IthsLetsEatFastFood
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:50161");
+                    });
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -37,7 +47,8 @@ namespace IthsLetsEatFastFood
             services.AddControllersWithViews();
             services.AddRazorPages();
             //services.AddMvc();
-            services.AddSingleton<IFoodProductRepository, MockFoodProductRepository>();
+            services.AddTransient<IFoodProductRepository, MockFoodProductRepository>();
+            services.AddTransient<ILetsFoodService,LetsFoodService>() ;
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -64,7 +75,7 @@ namespace IthsLetsEatFastFood
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();

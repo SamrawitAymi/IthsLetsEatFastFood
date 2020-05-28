@@ -38,10 +38,10 @@ namespace Lets.WebService.Controllers
             _foodProductRepository.DeleteById(id);
         }
 
-        public FoodProduct AddToCart()
-        {
+        //public FoodProduct AddToCart()
+        //{
 
-        }
+        //}
 
 
         //[HttpGet("{id}/file")]

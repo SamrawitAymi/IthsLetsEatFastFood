@@ -13,7 +13,7 @@ function GetCartItem() {
             element.innerHTML = data;
         });
 function AddToCart(foodProductId) {
-    fetch("http://localhost:50161/api/shoppingCart/addtocart/id" + foodProductId)
+    fetch("http://localhost:50161/api/shoppingCart/addtocart?id=" + foodProductId)
         .then(response => {
             console.log("response:", response);
             if (response.ok) {

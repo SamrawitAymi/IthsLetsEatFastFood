@@ -9,5 +9,7 @@ namespace Lets.WebService.Client
         IEnumerable<FoodProduct> GetProductList();
 
         FoodProduct GetProductById(Guid id);
+
+
     }
 }

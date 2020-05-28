@@ -33,10 +33,16 @@ namespace Lets.WebService.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void DeleteDocument(Guid id)
+        public void DeleteById(Guid id)
         {
             _foodProductRepository.DeleteById(id);
         }
+
+        public FoodProduct AddToCart()
+        {
+
+        }
+
 
         //[HttpGet("{id}/file")]
         //public async Task<IActionResult> GetDocument(int id)

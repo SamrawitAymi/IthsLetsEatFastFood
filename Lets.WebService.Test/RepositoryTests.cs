@@ -17,14 +17,24 @@ namespace Lets.WebService.Test
             var foodProduct = foodProductsRepository.GetFoodProById(Guid.Empty);
             Assert.Equal(Guid.Empty, foodProduct.Id);
         }
+
         [Fact]
         public void GetAllFoodProduct_Returns_ListOfProduct()
         {
             var foodProductsRepository = new MockFoodProductRepository();
              var foodProducts = foodProductsRepository.GetAll();
-            //var foodProduct = foodProductsRepository.GetAll();
             Assert.IsType<List<FoodProduct>>(foodProducts).ToList();
         }
+
+        [Fact]
+        public void DeleteFoodProductByID_Returns_Product()
+        {
+            var foodProductsRepository = new MockFoodProductRepository();
+            var foodProduct = foodProductsRepository.DeleteById(Guid.Empty);
+            Assert.Equal(Guid.Empty, foodProduct.Id);
+        }
+
+
 
     }
 }

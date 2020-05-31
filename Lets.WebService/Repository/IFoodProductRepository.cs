@@ -9,6 +9,7 @@ namespace Lets.WebService.Repository
         FoodProduct GetFoodProById(Guid id);
         IList<FoodProduct> GetAll();
         FoodProduct DeleteById(Guid id);
+        //FoodProduct UpdateFoodProduct(Guid id, FoodProduct foodProduct);
 
     }
 }

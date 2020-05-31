@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using IthsLetsEatFastFood.Models;
 using Microsoft.AspNetCore.Mvc;
-using IthsLetsEatFastFood.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using IthsLetsEatFastFood.ViewModel;
@@ -18,17 +17,15 @@ namespace IthsLetsEatFastFood.Controllers
     public class FoodProductController : Controller
     {
         
-        private readonly IFoodProductRepository _foodProductRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILetsFoodService _foodService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
 
-        public FoodProductController(IFoodProductRepository foodProductRepository, ILetsFoodService foodService,
+        public FoodProductController( ILetsFoodService foodService,
             UserManager<ApplicationUser> userManager)
         {
-                _foodProductRepository = foodProductRepository;
             _userManager = userManager;
             _foodService = foodService;
         }

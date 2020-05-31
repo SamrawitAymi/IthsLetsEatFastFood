@@ -2,34 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using IthsLetsEatFastFood.Models;
-using IthsLetsEatFastFood.Repository;
 using IthsLetsEatFastFood.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Lets.WebService.Client;
 
 namespace IthsLetsEatFastFood.Controllers
 {
     public class CartController : Controller
     {
-        private readonly IFoodProductRepository _foodProductRepository;
+       // private readonly IFoodProductRepository _foodProductRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILetsFoodService _foodService;
 
         private const string sessionKeyCart = "_cart";
         //private const string sessionKeyUserId = "_userId";
 
-        public CartController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
+        public CartController(/*IFoodProductRepository foodProductRepository,*/ ILetsFoodService foodService, UserManager<ApplicationUser> userManager)
         {
-            _foodProductRepository = foodProductRepository;
+            //_foodProductRepository = foodProductRepository;
             _userManager = userManager;
+            _foodService = foodService;
         }
 
         public IActionResult Index()
         {
             var cart = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
-            var products = _foodProductRepository.GetAll();
+            //var products = _foodService.GetProductList();
+            
 
             CartViewModel vm= new CartViewModel();
             vm.FoodProducts = cart;

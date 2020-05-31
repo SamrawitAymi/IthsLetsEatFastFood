@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using IthsLetsEatFastFood.Controllers;
 using IthsLetsEatFastFood.Models;
-using IthsLetsEatFastFood.Repository;
 using IthsLetsEatFastFood.ViewModel;
+using Lets.WebService.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +16,14 @@ namespace IthsLetsEatFastFood.Api
     public class ShoppingCartController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IFoodProductRepository _foodProductRepository;
+        private readonly ILetsFoodService _foodService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
-        public ShoppingCartController(IFoodProductRepository foodProductRepository, UserManager<ApplicationUser> userManager)
+        public ShoppingCartController( ILetsFoodService foodService, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _foodProductRepository = foodProductRepository;
+            _foodService = foodService;
         }
         [HttpGet]
         public JsonResult GetCartAmount()
@@ -71,10 +70,16 @@ namespace IthsLetsEatFastFood.Api
             }
             else
             {
-                var foodProduct = _foodProductRepository.GetFoodProById(id);
+                var foodProduct = _foodService.GetProductById(id);
                 CartItem newCartItem = new CartItem()
                 {
-                    FoodProduct = foodProduct,
+                    FoodProduct = new Models.FoodProduct { 
+                        Id=foodProduct.Id,
+                        Description=foodProduct.Description,
+                        ImageUrl=foodProduct.ImageUrl,
+                        Name=foodProduct.Name,
+                        Price=(decimal)foodProduct.Price
+                    },
                     Amount = 1
                 };
                 cartItems.Add(newCartItem);

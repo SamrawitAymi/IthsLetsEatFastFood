@@ -12,9 +12,9 @@ using IthsLetsEatFastFood.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using IthsLetsEatFastFood.Repository;
 using IthsLetsEatFastFood.Models;
 using Lets.WebService.Client;
+using Lets.WebService.Repository;
 
 namespace IthsLetsEatFastFood
 {

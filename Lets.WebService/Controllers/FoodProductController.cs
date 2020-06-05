@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Lets.WebService.Model;
 using Lets.WebService.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lets.WebService.Controllers
@@ -27,15 +24,25 @@ namespace Lets.WebService.Controllers
         }
 
         [HttpGet("{id}")]
-        public FoodProduct GetById(Guid id)
+        public ActionResult<FoodProduct> GetById(Guid id)
         {
-            return _foodProductRepository.GetFoodProById(id);
+            var foodProduct = _foodProductRepository.GetFoodProById(id);
+            if (foodProduct == null)
+            {
+                return NotFound();
+            }
+            return Ok(foodProduct);
         }
 
         [HttpDelete("{id}")]
         public void DeleteById(Guid id)
         {
-            _foodProductRepository.DeleteById(id);
+            var foodProduct = _foodProductRepository.DeleteById(id);
+            if (foodProduct == null)
+            {
+                NotFound();
+            }
+            
         }
 
         //public FoodProduct AddToCart()

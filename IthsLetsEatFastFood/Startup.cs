@@ -1,12 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using IthsLetsEatFastFood.Data;
 using Microsoft.Extensions.Configuration;
@@ -47,7 +41,7 @@ namespace IthsLetsEatFastFood
             services.AddControllersWithViews();
             services.AddRazorPages();
             //services.AddMvc();
-            services.AddTransient<IFoodProductRepository, MockFoodProductRepository>();
+            
             services.AddTransient<ILetsFoodService,LetsFoodService>() ;
             services.AddDistributedMemoryCache();
             services.AddSession(options => {

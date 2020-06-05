@@ -1,21 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-using Lets.WebService.Repository;
+using Lets.OrderWebService.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace Lets.WebService
+namespace Lets.OrderWebService
 {
     public class Startup
     {
@@ -30,16 +25,20 @@ namespace Lets.WebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<OrderDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("OrderDbConnection")));
+
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LetsApi", Version = "V1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LetsOrderApi", Version = "V1" });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-            services.AddTransient<IFoodProductRepository, MockFoodProductRepository>();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,13 +48,15 @@ namespace Lets.WebService
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
-           {
-               c.SwaggerEndpoint("v1/swagger.json", "LetsEatFF API V1");
-           });
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "LetsEatFF API V1");
+            });
 
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

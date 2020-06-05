@@ -13,14 +13,14 @@ namespace IthsLetsEatFastFood.Api
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ShoppingCartController : ControllerBase
+    public class CartController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILetsFoodService _foodService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
-        public ShoppingCartController( ILetsFoodService foodService, UserManager<ApplicationUser> userManager)
+        public CartController( ILetsFoodService foodService, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
             _foodService = foodService;

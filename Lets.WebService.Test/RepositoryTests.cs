@@ -1,19 +1,22 @@
-﻿
-using Lets.WebService.Model;
+﻿using Lets.WebService.Model;
+using Lets.WebService.Client;
 using Lets.WebService.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
+//using FoodProduct = Lets.WebService.Client.FoodProduct;
+
 namespace Lets.WebService.Test
 {
     public class RepositoryTests
     {
         private readonly IFoodProductRepository _foodProductRepository;
+        //private readonly ILetsFoodService _foodService;
         public RepositoryTests()
         {
             _foodProductRepository = new MockFoodProductRepository();
+            //_foodService = new LetsFoodService(); 
         }
         [Fact]
         public void GetFoodProductByID_Returns_Product()
@@ -26,7 +29,7 @@ namespace Lets.WebService.Test
         public void GetAllFoodProduct_Returns_ListOfProduct()
         {
              var foodProducts = _foodProductRepository.GetAll();
-            Assert.IsType<List<FoodProduct>>(foodProducts).ToList();
+            Assert.IsType<List<Model.FoodProduct>>(foodProducts).ToList();
         }
 
         [Fact]
@@ -36,7 +39,11 @@ namespace Lets.WebService.Test
             Assert.Equal(Guid.Empty, foodProduct.Id);
         }
 
-
-
+        //[Fact]
+        //public void AddToCartFoodProducts_Returns_ProductsInCart()
+        //{
+        //    var foodProducts = _.AddToCart(Guid.Empty);
+        //    Assert.Equal(Guid.Empty, foodProducts.Id);
+        //}
     }
 }

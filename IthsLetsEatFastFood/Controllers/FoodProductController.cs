@@ -39,10 +39,14 @@ namespace IthsLetsEatFastFood.Controllers
        [Authorize]
         public IActionResult AddToCart(Guid id)
         {
+           
             //var apiService = Service.AddToCart(id);
             var currentCartItems = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
             var userSessionId = HttpContext.Session.Get<Guid>(sessionKeyUserId);
             var actualUserId = Guid.Parse(_userManager.GetUserId(User));
+
+
+           // _foodService.AddToCart(currentCartItem);
 
             List<CartItem> cartItems = new List<CartItem>();
 

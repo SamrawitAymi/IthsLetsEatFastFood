@@ -10,6 +10,8 @@ namespace Lets.WebService.Client
 
         FoodProduct GetProductById(Guid id);
 
+        //FoodProduct AddToCart(CartViewModel cart);
+
 
     }
 }

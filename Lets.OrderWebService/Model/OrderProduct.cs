@@ -14,7 +14,7 @@ namespace Lets.OrderWebService.Model
         //public OrderProduct() { }
         public Guid OrderId { get; set; }
         public Order Order { get; set; }
-        public Guid ProductId { get; set; }
-        public Product Product { get; set; }
+        public Guid FoodProductId { get; set; }
+        public FoodProduct FoodProduct { get; set; }
     }
 }

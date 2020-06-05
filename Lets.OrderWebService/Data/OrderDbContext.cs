@@ -16,17 +16,17 @@ namespace Lets.OrderWebService.Data
         }
 
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }     
+        public DbSet<FoodProduct> FoodProducts { get; set; }     
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Order>().HasKey(o=>o.Id);
 
-            modelBuilder.Entity<Product>().HasKey(p=>p.Id);
+            modelBuilder.Entity<FoodProduct>().HasKey(p=>p.Id);
 
-            modelBuilder.Entity<OrderProduct>().HasKey(op=> new { op.OrderId, op.ProductId});
+            modelBuilder.Entity<OrderProduct>().HasKey(op=> new { op.OrderId, op.FoodProductId});
             modelBuilder.Entity<OrderProduct>().HasOne(o => o.Order).WithMany(p=>p.Products);
-            modelBuilder.Entity<OrderProduct>().HasOne(p => p.Product).WithMany(o => o.Orders);
+            modelBuilder.Entity<OrderProduct>().HasOne(p => p.FoodProduct).WithMany(o => o.Orders);
         }
     }
 }

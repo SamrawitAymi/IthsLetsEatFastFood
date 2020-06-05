@@ -41,11 +41,11 @@ namespace Lets.OrderWebService.Controllers
             
             foreach (var product in cart.FoodProducts)
             {
-                var foodProduct = _context.Products.Where(p => p.Id == product.FoodProduct.Id).FirstOrDefault();
+                var foodProduct = _context.FoodProducts.Where(p => p.Id == product.FoodProduct.Id).FirstOrDefault();
                 var orderProduct=new OrderProduct
                 {
                     Order = newOrder,
-                    Product = foodProduct
+                    FoodProduct = foodProduct
                 };
                 _context.Add(orderProduct);
             }

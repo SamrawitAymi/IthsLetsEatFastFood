@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lets.OrderWebService.Model
 {
-    public class Product
+    public class FoodProduct
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

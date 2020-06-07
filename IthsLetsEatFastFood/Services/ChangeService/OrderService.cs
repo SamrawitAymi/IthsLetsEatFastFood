@@ -15,19 +15,6 @@ namespace IthsLetsEatFastFood.Services.ChangeService
 {
     public class OrderService :IOrderService
     {
-        //public void AddToCart(CartViewModel cart)
-        //{
-
-        //    using (var httpClient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }))
-        //    {
-        //        httpClient.BaseAddress = new Uri("http://localhost:8080/api/FoodProduct");
-        //        var response = httpClient.GetAsync($"{httpClient.BaseAddress}/{cart}").GetAwaiter().GetResult();
-
-        //        if (!response.IsSuccessStatusCode)
-        //            Console.WriteLine(" request is not succesfull!");
-        //        JsonConvert.DeserializeObject<FoodProduct>(response.Content.ReadAsStringAsync().Result);
-        //    }
-        //}
         public void SaveOrder(CartViewModel order)
         {
 

@@ -1,6 +1,4 @@
-﻿using Lets.WebService.Model;
-using Lets.WebService.Client;
-using Lets.WebService.Repository;
+﻿using Lets.WebService.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

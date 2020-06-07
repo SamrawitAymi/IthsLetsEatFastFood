@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Lets.WebService.Client;
+using IthsLetsEatFastFood.Services.ChangeService;
 
 namespace IthsLetsEatFastFood.Controllers
 {
@@ -16,13 +16,15 @@ namespace IthsLetsEatFastFood.Controllers
     {
        
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IOrderService _orderService;
         
 
         private const string sessionKeyCart = "_cart";
 
-        public CartController( UserManager<ApplicationUser> userManager)
+        public CartController( UserManager<ApplicationUser> userManager, IOrderService orderService)
         {
            _userManager = userManager;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -50,8 +52,6 @@ namespace IthsLetsEatFastFood.Controllers
 
         }
         
-        
-        [HttpPost]
         public async Task<IActionResult> MyOrder([Bind("TotalPrice, FoodProduct")] CartViewModel cart)
         {
             cart.FoodProducts = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
@@ -66,16 +66,15 @@ namespace IthsLetsEatFastFood.Controllers
             }).ToList();
             var userIdentity = User.FindFirstValue(ClaimTypes.NameIdentifier);
             order.UserId = Guid.Parse(_userManager.GetUserId(User));
-           
+
             viewModel.Order = order;
             var user = await _userManager.GetUserAsync(User);
             viewModel.User = user;
-            
-           // var productId = order.OrderRows.Select(s => s.FoodProduct.Id);
-           //var orderId= order.Id;
-                   
-            
-            return View("OrderSuccess", viewModel);
+
+            //save to the database through order service
+            _orderService.SaveOrder(cart);
+
+           return View("OrderSuccess", viewModel);
         }
 
         public IActionResult OrderSuccess(Order order)

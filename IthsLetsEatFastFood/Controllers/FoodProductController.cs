@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using IthsLetsEatFastFood.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -9,8 +8,6 @@ using Microsoft.AspNetCore.Http;
 using IthsLetsEatFastFood.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using System.Net.Http;
-using Lets.WebService.Client;
 using IthsLetsEatFastFood.Services.QueryService;
 
 namespace IthsLetsEatFastFood.Controllers
@@ -19,22 +16,21 @@ namespace IthsLetsEatFastFood.Controllers
     {
         
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IQueryService _queryService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
 
-        public FoodProductController(UserManager<ApplicationUser> userManager)
+        public FoodProductController(UserManager<ApplicationUser> userManager, IQueryService queryService)
         {
             _userManager = userManager;
+            _queryService = queryService;
         }
 
 
         public IActionResult Index()
         {
-            var getFoodProduct = new QueryService();
-            
-            //return View(_foodService.GetProductList());                    
-            return View(getFoodProduct.GetProductList());                    
+            return View(_queryService.GetProductList());                    
         }
  
        [Authorize]
@@ -71,8 +67,7 @@ namespace IthsLetsEatFastFood.Controllers
             }
             else
             {
-                var getFoodProduct = new QueryService();
-                var foodProduct = getFoodProduct.GetProductById(id);
+                var foodProduct = _queryService.GetProductById(id);
                 CartItem newCartItem = new CartItem()
                 {
                     FoodProduct = new Models.FoodProduct {

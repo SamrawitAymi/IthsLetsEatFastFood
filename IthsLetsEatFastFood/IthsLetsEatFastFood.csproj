@@ -24,7 +24,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Lets.WebService.Client\Lets.WebService.Client.csproj" />
     <ProjectReference Include="..\Lets.WebService\Lets.WebService.csproj" />
   </ItemGroup>
 

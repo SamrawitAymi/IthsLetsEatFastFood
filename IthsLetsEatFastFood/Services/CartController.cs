@@ -5,7 +5,6 @@ using IthsLetsEatFastFood.Controllers;
 using IthsLetsEatFastFood.Models;
 using IthsLetsEatFastFood.Services.QueryService;
 using IthsLetsEatFastFood.ViewModel;
-using Lets.WebService.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +16,14 @@ namespace IthsLetsEatFastFood.Api
     public class CartController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IQueryService _queryService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
-        public CartController( UserManager<ApplicationUser> userManager)
+        public CartController( UserManager<ApplicationUser> userManager, IQueryService queryService)
         {
             _userManager = userManager;
+            _queryService = queryService;
         }
         [HttpGet]
         public JsonResult GetCartAmount()
@@ -69,8 +70,7 @@ namespace IthsLetsEatFastFood.Api
             }
             else
             {
-                var getFoodProduct = new QueryService();
-                var foodProduct = getFoodProduct.GetProductById(id);
+                var foodProduct = _queryService.GetProductById(id);
                 CartItem newCartItem = new CartItem()
                 {
                     FoodProduct = new Models.FoodProduct { 

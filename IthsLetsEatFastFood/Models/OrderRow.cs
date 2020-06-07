@@ -10,7 +10,9 @@ namespace IthsLetsEatFastFood.Models
             Amount = cartItem.Amount;
             FoodProduct = cartItem.FoodProduct;
         }
-        public OrderRow() { }
+        public OrderRow() 
+        { 
+        }
         public FoodProduct FoodProduct { get; set; }
         public int Amount { get; set; }
      

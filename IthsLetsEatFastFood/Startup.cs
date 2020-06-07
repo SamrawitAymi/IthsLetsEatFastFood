@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IthsLetsEatFastFood.Models;
 using Lets.WebService.Service;
+using IthsLetsEatFastFood.Services.QueryService;
+using IthsLetsEatFastFood.Services.ChangeService;
 
 namespace IthsLetsEatFastFood
 {
@@ -39,9 +41,10 @@ namespace IthsLetsEatFastFood
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            //services.AddMvc();
-            
-            //services.AddTransient<IReadChangeProduct, ReadChangeFoodProduct>() ;
+
+            services.AddTransient<IQueryService, QueryService>();
+            services.AddTransient<IOrderService, OrderService>();
+
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(10);

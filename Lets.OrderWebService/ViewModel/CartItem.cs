@@ -1,4 +1,4 @@
-﻿using Lets.WebService.Client;
+﻿using Lets.OrderWebService.Model;
 
 namespace Lets.OrderWebService.ViewModel
 {

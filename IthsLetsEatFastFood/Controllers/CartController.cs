@@ -14,25 +14,21 @@ namespace IthsLetsEatFastFood.Controllers
 {
     public class CartController : Controller
     {
-       // private readonly IFoodProductRepository _foodProductRepository;
+       
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILetsFoodService _foodService;
+        
 
         private const string sessionKeyCart = "_cart";
-        //private const string sessionKeyUserId = "_userId";
 
-        public CartController(/*IFoodProductRepository foodProductRepository,*/ ILetsFoodService foodService, UserManager<ApplicationUser> userManager)
+        public CartController( UserManager<ApplicationUser> userManager)
         {
-            //_foodProductRepository = foodProductRepository;
-            _userManager = userManager;
-            _foodService = foodService;
+           _userManager = userManager;
         }
 
         public IActionResult Index()
         {
             var cart = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
-            //var products = _foodService.GetProductList();
-            
+                        
 
             CartViewModel vm= new CartViewModel();
             vm.FoodProducts = cart;
@@ -74,6 +70,11 @@ namespace IthsLetsEatFastFood.Controllers
             viewModel.Order = order;
             var user = await _userManager.GetUserAsync(User);
             viewModel.User = user;
+            
+           // var productId = order.OrderRows.Select(s => s.FoodProduct.Id);
+           //var orderId= order.Id;
+                   
+            
             return View("OrderSuccess", viewModel);
         }
 

@@ -7,8 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IthsLetsEatFastFood.Models;
-using Lets.WebService.Client;
-using Lets.WebService.Repository;
+using Lets.WebService.Service;
 
 namespace IthsLetsEatFastFood
 {
@@ -42,7 +41,7 @@ namespace IthsLetsEatFastFood
             services.AddRazorPages();
             //services.AddMvc();
             
-            services.AddTransient<ILetsFoodService,LetsFoodService>() ;
+            //services.AddTransient<IReadChangeProduct, ReadChangeFoodProduct>() ;
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(10);

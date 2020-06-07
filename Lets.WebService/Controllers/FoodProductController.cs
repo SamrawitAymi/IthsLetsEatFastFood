@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Transactions;
+using Lets.WebService.Data;
 using Lets.WebService.Model;
 using Lets.WebService.Repository;
+using Lets.WebService.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lets.WebService.Controllers
@@ -11,22 +15,25 @@ namespace Lets.WebService.Controllers
     [ApiController]
     public class FoodProductController : ControllerBase
     {
-        private readonly IFoodProductRepository _foodProductRepository;
-        public FoodProductController()
+        private readonly FoodProductDbContext _dbContext;
+        private readonly IReadChangeProduct _readChangeProduct;
+        public FoodProductController(FoodProductDbContext context, IReadChangeProduct readFoodProduct )
         {
-            _foodProductRepository = new MockFoodProductRepository();
+            _dbContext = context;
+            _readChangeProduct = readFoodProduct;
         }
 
         [HttpGet]
         public IList<FoodProduct> Get()
         {
-            return _foodProductRepository.GetAll();
+            return _readChangeProduct.GetAll();
+            
         }
 
         [HttpGet("{id}")]
         public ActionResult<FoodProduct> GetById(Guid id)
         {
-            var foodProduct = _foodProductRepository.GetFoodProById(id);
+            var foodProduct = _readChangeProduct.GetFoodProById(id);
             if (foodProduct == null)
             {
                 return NotFound();
@@ -37,80 +44,29 @@ namespace Lets.WebService.Controllers
         [HttpDelete("{id}")]
         public void DeleteById(Guid id)
         {
-            var foodProduct = _foodProductRepository.DeleteById(id);
+            var foodProduct = _readChangeProduct.DeleteById(id);
             if (foodProduct == null)
             {
                 NotFound();
             }
-            
+            _dbContext.SaveChanges();
         }
 
-        //public FoodProduct AddToCart()
-        //{
-
-        //}
-
-
-        //[HttpGet("{id}/file")]
-        //public async Task<IActionResult> GetDocument(int id)
-        //{
-        //    _logger.LogInformation("GetDocument with ID {Id} by user '{User}'", id, User.Identity.Name);
-
-        //    var fileData = await _rawFileStore.GetRawFileDataById(id).ConfigureAwait(false);
-
-        //    return File(fileData, "application/octet-stream");
-        //}
-
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetDocumentObject(int id)
-        //{
-        //    _logger.LogInformation("GetDocumentObject with ID {Id} by user '{User}'", id, User.Identity.Name);
-
-        //    var file = await _rawFileStore.GetRawFileById(id).ConfigureAwait(false);
-
-        //    return Ok(file);
-        //}
-
-        //[HttpGet("list")]
-        //public async Task<IActionResult> GetListOfDocumentObjects([FromBody] RawFileRequest rawFile)
-        //{
-
-        //    //_logger.LogInformation($"GetDocumentObjects of {rawFile.Ids} by user '{User.Identity.Name}'");
+        [HttpPut]
+        public IActionResult Put([FromBody] FoodProduct foodProduct)
+        {
+            if (foodProduct != null)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    _readChangeProduct.UpdateProduct(foodProduct);
+                    scope.Complete();
+                    return new OkResult();
+                }
+            }
+            return new NoContentResult();
+        }
 
 
-        //    var files = await _rawFileStore.GetListOfRawFiles(rawFile.Ids).ConfigureAwait(false);
-
-        //    return Ok(files);
-
-        //}
-
-        //[HttpPost("")]
-        //public async Task<IActionResult> CreateDocument([FromBody]RawFileRequest rawFile)
-        //{
-        //    _logger.LogInformation("CreateDocument '{FileName}' (size:{FileSize}) by user '{User}'",
-        //        rawFile.FileName,
-        //        rawFile.FileData?.Length,
-        //        User.Identity.Name);
-
-        //    var id = await _rawFileStore.AddRawFile(
-        //        new RawFile
-        //        {
-        //            FileName = rawFile.FileName,
-        //            FileData = rawFile.FileData
-        //        },
-        //        User.Identity.Name).ConfigureAwait(false);
-
-        //    return Ok(id);
-        //}
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteDocument(int id)
-        //{
-        //    _logger.LogInformation("DeleteDocument with ID {Id} by user '{User}'", id, User.Identity.Name);
-
-        //    await _rawFileStore.DeleteRawFile(id, User.Identity.Name).ConfigureAwait(false);
-
-        //    return Ok();
-        //}
     }
 }

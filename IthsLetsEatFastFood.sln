@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lets.WebService.Client", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lets.WebService.Test", "Lets.WebService.Test\Lets.WebService.Test.csproj", "{F358D35D-7601-4CFC-BDF5-E4D3BED731B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lets.OrderWebService", "Lets.OrderWebService\Lets.OrderWebService.csproj", "{1ABEF72E-CF23-4D91-A857-BF197B161081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lets.OrderWebService", "Lets.OrderWebService\Lets.OrderWebService.csproj", "{1ABEF72E-CF23-4D91-A857-BF197B161081}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

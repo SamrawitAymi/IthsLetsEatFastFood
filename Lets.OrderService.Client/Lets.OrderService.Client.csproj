@@ -5,26 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JsonSubTypes" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.21" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="LetsApi.cs">
+    <Compile Update="LetsOrderService.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>LetsApi.json</DependentUpon>
+      <DependentUpon>LetsOrderService.json</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="LetsApi.json">
+    <None Update="LetsOrderService.json">
       <Generator>NSwagCodeGenerator</Generator>
-      <LastGenOutput>LetsApi.cs</LastGenOutput>
-    </None>
-    <None Update="Swagger.json">
-      <Generator>OpenApiCodeGenerator</Generator>
+      <LastGenOutput>LetsOrderService.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

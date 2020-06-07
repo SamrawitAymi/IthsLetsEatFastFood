@@ -17,23 +17,21 @@ namespace Lets.OrderWebService.Controllers
     public class CartController : ControllerBase
     {
 
-        private readonly ILetsFoodService _foodService;
+        
         private readonly OrderDbContext _context;
 
         public CartController(OrderDbContext context)
         {
             _context = context;
-            _foodService = new LetsFoodService();
-
         }
 
         [HttpPost]
-        public ActionResult AddToCart(CartViewModel cart)
+        public void AddToCart(CartViewModel cart)
         {
             var newOrder = new Order
             {
                 TotalPrice = cart.TotalPrice,
-                Date = new DateTime(2020,05,20),
+                Date = DateTime.UtcNow,
                 UserId = new Guid(),
                 UserName = "test"
             };
@@ -51,8 +49,6 @@ namespace Lets.OrderWebService.Controllers
             }
 
             _context.SaveChanges();
-
-            return Ok();
         }
     }
 }

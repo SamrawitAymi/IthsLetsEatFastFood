@@ -43,21 +43,21 @@ namespace Lets.WebService.Client
             return product;
         }
 
-        //public FoodProduct AddToCart(CartViewModel cart)
+        //public void AddToCart(CartViewModel cart)
         //{
-        //    FoodProduct product = new FoodProduct();
-        //    //List<CartItem> cartItems = new List<CartItem>();
+        //    //FoodProduct product = new FoodProduct();
+        //    List<CartItem> cartItems = new List<CartItem>();
         //    using (var handler = new HttpClientHandler())
         //    using (var client = new HttpClient(handler))
         //    {
         //        client.BaseAddress = new Uri("http://localhost:44396/api/cart");
-        //        var apiClient = new LetsApiClient(client);
-        //        product = apiClient.FoodProductAsync(id).GetAwaiter().GetResult();
+        //        var apiOrderClient = new LetsOrderApiClient(client);
+        //        cartItems = apiOrderClient.CartAsync(cart.FoodProducts).GetAwaiter().GetResult();
 
-        //        if (product.Id == id)
+        //        if (cartItems != null)
         //            Console.WriteLine("successfull request is done!");
 
-        //        return product;
+               
         //    }
         //}
 

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System.Net.Http;
 using Lets.WebService.Client;
+using IthsLetsEatFastFood.Services.QueryService;
 
 namespace IthsLetsEatFastFood.Controllers
 {
@@ -18,35 +19,32 @@ namespace IthsLetsEatFastFood.Controllers
     {
         
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILetsFoodService _foodService;
 
         private const string sessionKeyCart = "_cart";
         private const string sessionKeyUserId = "_userId";
 
-        public FoodProductController( ILetsFoodService foodService,
-            UserManager<ApplicationUser> userManager)
+        public FoodProductController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _foodService = foodService;
         }
 
 
         public IActionResult Index()
         {
-            return View(_foodService.GetProductList());                    
+            var getFoodProduct = new QueryService();
+            
+            //return View(_foodService.GetProductList());                    
+            return View(getFoodProduct.GetProductList());                    
         }
  
        [Authorize]
         public IActionResult AddToCart(Guid id)
         {
            
-            //var apiService = Service.AddToCart(id);
+
             var currentCartItems = HttpContext.Session.Get<List<CartItem>>(sessionKeyCart);
             var userSessionId = HttpContext.Session.Get<Guid>(sessionKeyUserId);
-            var actualUserId = Guid.Parse(_userManager.GetUserId(User));
-
-
-           // _foodService.AddToCart(currentCartItem);
+            var actualUserId = Guid.Parse(_userManager.GetUserId(User));         
 
             List<CartItem> cartItems = new List<CartItem>();
 
@@ -73,7 +71,8 @@ namespace IthsLetsEatFastFood.Controllers
             }
             else
             {
-                var foodProduct = _foodService.GetProductById(id);
+                var getFoodProduct = new QueryService();
+                var foodProduct = getFoodProduct.GetProductById(id);
                 CartItem newCartItem = new CartItem()
                 {
                     FoodProduct = new Models.FoodProduct {
@@ -90,6 +89,7 @@ namespace IthsLetsEatFastFood.Controllers
             
             HttpContext.Session.Set<List<CartItem>>(sessionKeyCart, cartItems);
 
+            // _foodService.AddToCart(newCartItem);
             return RedirectToAction("Index");
         }
 

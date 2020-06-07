@@ -17,9 +17,13 @@ namespace Lets.WebService
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            Host.CreateDefaultBuilder(args)         
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    //webBuilder.UseHttpSys(options =>
+                    //{
+                    //    options.Authentication.AllowAnonymous = true;
+                    //});
                     webBuilder.UseStartup<Startup>();
                 });
     }

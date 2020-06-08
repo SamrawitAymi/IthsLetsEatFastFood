@@ -1,9 +1,11 @@
 ﻿using Lets.WebService.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Xml.Linq;
 
 namespace Lets.WebService.Repository
@@ -116,24 +118,11 @@ namespace Lets.WebService.Repository
            
         }
 
-        //public int UpdateFoodProduct(Guid id, FoodProduct foodProduct)
-        //{
-        //    int res = 0;
-        //    var product = foodProducts.Find(x => x.Id == id);
-        //    if (product != null)
-        //    {
-        //        product.Name = foodProduct.Name;
-        //        product.Description = foodProduct.Description;
-        //        product.Price = foodProduct.Price;
-        //        product.ImageUrl = foodProduct.ImageUrl;
-        //        res = foodProducts.Count();
-        //    }
-        //    return res;
+        public void InsertProduct(FoodProduct foodProduct)
+        {
+            foodProducts.Add(foodProduct);
             
-            
-
-        //}
-
+        }
 
     }
 }

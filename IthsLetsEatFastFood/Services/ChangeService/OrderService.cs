@@ -18,6 +18,7 @@ namespace IthsLetsEatFastFood.Services.ChangeService
             using (var httpClient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }))
             {
                 httpClient.BaseAddress = new Uri("https://localhost:44396/api/Cart");
+                httpClient.DefaultRequestHeaders.Add("ApiKey", "letsApi get service access Key");
                 var response = httpClient.PostAsync($"{httpClient.BaseAddress}",stringContent).GetAwaiter().GetResult();
 
                 if (response.StatusCode == HttpStatusCode.OK)

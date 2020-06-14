@@ -11,11 +11,8 @@ namespace Lets.OrderWebService.Controllers
     [ApiController]
     [ApiKeyAuth]
     public class CartController : ControllerBase
-    {
-
-        
+    {       
         private readonly OrderDbContext _context;
-
         public CartController(OrderDbContext context)
         {
             _context = context;

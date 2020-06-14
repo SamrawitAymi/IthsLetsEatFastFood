@@ -2,7 +2,9 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace IthsLetsEatFastFood.Services.QueryService
 {
@@ -13,6 +15,7 @@ namespace IthsLetsEatFastFood.Services.QueryService
             using (var httpClient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }))
             {
                 httpClient.BaseAddress = new Uri("http://localhost:8080/api/FoodProduct");
+                httpClient.DefaultRequestHeaders.Add("ApiKey", "letsApi get service access Key");
                 var response = httpClient.GetAsync($"{httpClient.BaseAddress}").GetAwaiter().GetResult();
                
                if(!response.IsSuccessStatusCode)
@@ -24,8 +27,9 @@ namespace IthsLetsEatFastFood.Services.QueryService
         public FoodProduct GetProductById(Guid id)
         {
             using (var httpClient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true }))
-            {
+            {              
                 httpClient.BaseAddress = new Uri("http://localhost:8080/api/FoodProduct");
+                httpClient.DefaultRequestHeaders.Add("ApiKey", "letsApi get service access Key");
                 var response = httpClient.GetAsync($"{httpClient.BaseAddress}/{id}").GetAwaiter().GetResult();
 
                 if (!response.IsSuccessStatusCode)

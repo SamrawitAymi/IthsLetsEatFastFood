@@ -14,8 +14,8 @@
     
     <header>
         <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light border-bottom box-shadow mb-3">
+
             <div class="container">
-                <partial name="_CookieConsentPartial" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IthsLetsEatFastFood</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,7 @@
         </nav>
     </header>
     <div class="container">
+        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -51,7 +52,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Samrawit Haylemeskel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Samrawit Haylemeskel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Learn more</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

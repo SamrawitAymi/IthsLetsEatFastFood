@@ -14,6 +14,7 @@ namespace Lets.WebService.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKeyAuth]
     public class FoodProductController : ControllerBase
     {
         private readonly FoodProductDbContext _dbContext;
@@ -43,7 +44,6 @@ namespace Lets.WebService.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
         public void DeleteById(Guid id)
         {
             var foodProduct = _readChangeProduct.DeleteById(id);

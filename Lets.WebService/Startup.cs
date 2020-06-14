@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Lets.WebService.Data;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ServiceStack.Configuration;
 
 namespace Lets.WebService
 {
@@ -34,42 +34,14 @@ namespace Lets.WebService
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LetsApi", Version = "V1" });
-
-            //    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            //    {
-            //        Description = "Basic Authorization header using the Bearer scheme.",
-            //        Name = "Authorization",
-            //        In = ParameterLocation.Header,
-            //        Type = SecuritySchemeType.ApiKey,
-            //        Scheme = "Bearer"
-            //    });
-
-            //    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-            //    {
-            //        {
-            //            new OpenApiSecurityScheme
-            //            {
-            //                Reference = new OpenApiReference
-            //                {
-            //                    Type = ReferenceType.SecurityScheme,
-            //                    Id = "Bearer"
-            //                },
-            //                    Scheme = "oauth2",
-            //                    Name = "Bearer",
-            //                    In = ParameterLocation.Header,
-
-            //            },
-            //                new List<string>()
-            //        }
-                //});
-
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LetsApi", Version = "V1" });             
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
             services.AddTransient<IReadChangeProduct, ReadChangeFoodProduct>();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,14 +59,9 @@ namespace Lets.WebService
                c.SwaggerEndpoint("v1/swagger.json", "LetsEatFF API V1");
            });
 
-            //app.UseStatusCodePages();
-
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

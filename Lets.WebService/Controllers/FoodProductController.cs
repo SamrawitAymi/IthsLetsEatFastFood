@@ -6,7 +6,6 @@ using Lets.WebService.Data;
 using Lets.WebService.Model;
 using Lets.WebService.Repository;
 using Lets.WebService.Service;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lets.WebService.Controllers

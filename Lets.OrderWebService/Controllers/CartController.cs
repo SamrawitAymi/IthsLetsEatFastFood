@@ -8,14 +8,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Lets.OrderWebService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
+    [ApiKeyAuth]
     public class CartController : ControllerBase
-    {
-
-        
+    {       
         private readonly OrderDbContext _context;
-
         public CartController(OrderDbContext context)
         {
             _context = context;

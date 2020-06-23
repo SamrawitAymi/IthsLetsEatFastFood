@@ -13,6 +13,7 @@ namespace Lets.WebService.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKeyAuth]
     public class FoodProductController : ControllerBase
     {
         private readonly FoodProductDbContext _dbContext;

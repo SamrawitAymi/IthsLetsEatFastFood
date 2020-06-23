@@ -10,6 +10,8 @@ using IthsLetsEatFastFood.Models;
 using Lets.WebService.Service;
 using IthsLetsEatFastFood.Services.QueryService;
 using IthsLetsEatFastFood.Services.ChangeService;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace IthsLetsEatFastFood
 {
@@ -40,6 +42,15 @@ namespace IthsLetsEatFastFood
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
             services.AddRazorPages();
 
             services.AddTransient<IQueryService, QueryService>();
@@ -69,6 +80,8 @@ namespace IthsLetsEatFastFood
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCookiePolicy();
 
             app.UseRouting();
             app.UseCors();

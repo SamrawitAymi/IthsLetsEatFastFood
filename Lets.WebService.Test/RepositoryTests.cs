@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
-//using FoodProduct = Lets.WebService.Client.FoodProduct;
 
 namespace Lets.WebService.Test
 {
@@ -64,11 +63,5 @@ namespace Lets.WebService.Test
             
         }
 
-        //[Fact]
-        //public void AddToCartFoodProducts_Returns_ProductsInCart()
-        //{
-        //    var foodProducts = _.AddToCart(Guid.Empty);
-        //    Assert.Equal(Guid.Empty, foodProducts.Id);
-        //}
     }
 }
